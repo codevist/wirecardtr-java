@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+>
+
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+
+	<!-- Most controllers will use the ControllerClassNameHandlerMapping above, but for the index controller we are using ParameterizableViewController, 
+		so we must define an explicit mapping for it. -->
+	<bean
+		id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"
+	>
+		<property name="mappings">
+			<props>
+				<prop key="index.htm">IndexController</prop>
+                                <prop key="marketplace_add_subpartner.htm">MarketPlaceAddSubPartnerController</prop>
+                                <prop key="marketplace_update_subpartner.htm">MarketPlaceUpdateSubPartnerController</prop>
+                                <prop key="marketplace_deactive_subpartner.htm">MarketPlaceDeactiveController</prop>
+                                <prop key="marketplace_sale_3dsecure.htm">MarketPlaceSale3DSecureController</prop>
+                                <prop key="marketplace_mpsale.htm">MarketPlaceMpSaleController</prop>
+                                <prop key="marketplace_release_payment.htm">MarketPlaceReleaseController</prop>
+				<prop key="send_information_sms.htm">InformationSmsController</prop>
+                                <prop key="pro_api.htm">ProApiController</prop>	
+                                 <prop key="api_plus.htm">ApiPlusController</prop>	
+                                <prop key="ccproxy_sale.htm">CCProxySaleController</prop>
+                                <prop key="wdticket_sale3durl.htm">WDTicketSale3DSecureController</prop>	
+                                <prop key="wdticket_sale.htm">WDTicketSaleController</prop>	
+                                <prop key="wdticket_sale.htm">WDTicketSaleController</prop>
+                                <prop key="subscriber_detail.htm">SubscriberDetailController</prop>
+                                <prop key="subscriber_deactive.htm">SubscriberDeactiveController</prop>
+                                <prop key="subscriber_select.htm">SubscriberSelectController</prop>
+                                <prop key="success.htm">SuccessController</prop>
+                                <prop key="fail.htm">FailController</prop>
+                                
+			</props>
+		</property>
+	</bean>
+
+	<bean
+		id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/jsp/"
+		p:suffix=".jsp" />
+	<!-- The index controller. -->
+	<bean
+		name="IndexController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="index" />
+        <bean
+		name="InformationSmsController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="send_information_sms" />
+        
+         <bean
+		name="MarketPlaceUpdateSubPartnerController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="marketplace_update_subpartner" />
+        <bean
+		name="MarketPlaceAddSubPartnerController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="marketplace_add_subpartner" />
+        <bean
+		name="MarketPlaceSale3DSecureController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="marketplace_sale_3dsecure" />
+        <bean
+		name="MarketPlaceMpSaleController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="marketplace_mpsale" />
+        <bean
+		name="MarketPlaceReleaseController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="marketplace_release_payment" />
+        <bean
+		name="MarketPlaceDeactiveController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="marketplace_deactive_subpartner" />
+        <bean
+		name="ProApiController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="pro_api" />
+        <bean
+		name="CCProxySaleController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="ccproxy_sale" />
+        <bean
+		name="WDTicketSale3DSecureController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="wdticket_sale3durl" />
+        <bean
+		name="WDTicketSaleController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="wdticket_sale" />
+        
+          <bean
+		name="SubscriberDetailController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="subscriber_detail" />
+          <bean
+		name="SubscriberDeactiveController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="subscriber_deactive" />
+           <bean
+		name="SubscriberSelectController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="subscriber_select" />
+              <bean
+		name="ApiPlusController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="api_plus" /> 
+           
+            <bean
+		name="SuccessController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="success" /> 
+         <bean
+		name="FailController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="fail" /> 
+</beans>

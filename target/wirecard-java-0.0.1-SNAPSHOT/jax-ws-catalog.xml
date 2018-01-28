@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://vas.mikro-odeme.com/services/msendsmsservice.asmx?Wsdl" uri="wsdl/vas.mikro-odeme.com/services/msendsmsservice.asmx.wsdl"/>
+    <system systemId="http://www.webservicex.net/RssToHTML.asmx?WSDL" uri="wsdl/www.webservicex.net/RssToHTML.asmx.wsdl"/>
+    <system systemId="https://www.3pay.com/services/SubscriberManagementService.asmx?WSDL" uri="wsdl/www.3pay.com/services/SubscriberManagementService.asmx.wsdl"/>
+    <system systemId="http://vas.mikro-odeme.com/services/msendsmsservice.asmx?WSDL" uri="wsdl/vas.mikro-odeme.com/services/msendsmsservice.asmx.wsdl"/>
+    <system systemId="https://www.3pay.com/services/saleservice.asmx?WSDL" uri="wsdl/www.3pay.com/services/saleservice.asmx.wsdl"/>
+</catalog>
