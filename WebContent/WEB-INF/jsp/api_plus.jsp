@@ -113,28 +113,20 @@
              
              com._3pay.services.SaleService service = new com._3pay.services.SaleService();
              com._3pay.services.SaleServiceSoap port = service.getSaleServiceSoap();
-
-             
              com._3pay.services.MAuthToken token = new com._3pay.services.MAuthToken();
              com._3pay.services.MSaleInput input = new com._3pay.services.MSaleInput();
              com._3pay.services.MSaleProduct mSaleProduct = new com._3pay.services.MSaleProduct();
-            
+             com._3pay.services.ArrayOfMSaleProduct arrayOfMSaleProduct = new com._3pay.services.ArrayOfMSaleProduct();
+			 
              token.setUserCode(settings.userCode);
              token.setPin(settings.pin);
-             
+			 
              mSaleProduct.setProductId(0);
-             mSaleProduct.setProductCategory(1);
-             mSaleProduct.setProductDescription("sadsfsd");
+             mSaleProduct.setProductCategory(Integer.parseInt(request.getParameter("productCategoryId")));
+             mSaleProduct.setProductDescription("Bilgisayar");
              mSaleProduct.setPrice(0.01);
              mSaleProduct.setUnit(1);
-             
-            // com._3pay.services.MSaleProduct[] mSale;
-            // mSale= new com._3pay.services.MSaleProduct[] {mSaleProduct};
-            // com._3pay.services.MSaleProduct[] objArr = add(mSale, mSaleProduct);
-             
-             
-             com._3pay.services.MSaleProduct[] mSale = {mSaleProduct};
-             
+			 
              input.setMPAY("");
              input.setGsm(request.getParameter("gsmNumber"));        
              input.setContent("Bilgisayar");
@@ -143,16 +135,18 @@
              input.setUrl("http://localhost:8084/wirecard-java/api_plus.htm");
              input.setReceivedSMSObjectId("00000000-0000-0000-0000-000000000000");        
              input.setSendNotificationSMS(true);
-            // input.setProductList(mSale);
+            
+             arrayOfMSaleProduct.getMSaleProduct().add(mSaleProduct);
+             input.setProductList(arrayOfMSaleProduct);
              
              input.setOnSuccessfulSMS("basarili odeme yaptiniz");
              input.setOnErrorSMS("basarisiz odeme yaptiniz");
              input.setRequestGsmOperator(0);        
              input.setRequestGsmType(0);
-             input.setTurkcellServiceId("0");
+             input.setTurkcellServiceId("");
              input.setExtra("");
              input.setCustomerIpAddress("127.0.0.1");        
-                     
+             
              com._3pay.services.MSaleOutput result = port.saleWithConfirm(token, input);
              StringWriter sw = new StringWriter();
                  JAXB.marshal(result, sw);
