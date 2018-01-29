@@ -119,13 +119,22 @@
                com._3pay.services.SaleServiceSoap port = service.getSaleServiceSoap();
                com._3pay.services.MAuthToken token = new com._3pay.services.MAuthToken();
                com._3pay.services.MSaleTicketInput input = new com._3pay.services.MSaleTicketInput();
+               com._3pay.services.MSaleProduct mSaleProduct = new com._3pay.services.MSaleProduct();
+               com._3pay.services.ArrayOfMSaleProduct arrayOfMSaleProduct = new com._3pay.services.ArrayOfMSaleProduct();
+               
+               mSaleProduct.setProductId(0);
+               mSaleProduct.setProductCategory(Integer.parseInt(request.getParameter("productCategoryId")));
+               mSaleProduct.setProductDescription("Bilgisayar");
+               mSaleProduct.setPrice(0.01);
+               mSaleProduct.setUnit(1);
                
                input.setMPAY("");
                input.setContent("Bilgisayar");
                input.setSendOrderResult(true);
                input.setPaymentTypeId(Integer.parseInt(request.getParameter("paymentTypeId")));
                input.setReceivedSMSObjectId("00000000-0000-0000-0000-000000000000");  
-               // input.setProductList(mSale);
+               arrayOfMSaleProduct.getMSaleProduct().add(mSaleProduct);
+               input.setProductList(arrayOfMSaleProduct);
                input.setSendNotificationSMS(true);
                input.setOnSuccessfulSMS("basarili odeme yaptiniz");
                input.setOnErrorSMS("basarisiz odeme yaptiniz");
@@ -137,7 +146,7 @@
                input.setCountry("");
                input.setCurrency("");
                input.setExtra("");
-               input.setTurkcellServiceId("0");
+               input.setTurkcellServiceId("");
                
                token.setUserCode(settings.userCode);
                token.setPin(settings.pin);

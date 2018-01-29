@@ -3,9 +3,10 @@
 <%@page import="wirecard.core.Helper"%>
 <%@page import="javax.xml.bind.JAXB"%>
 <%@page import="java.io.StringWriter"%>
+<%@page import="java.util.UUID"%>
 <%@page import="wirecard.core.request.MarketPlaceMpSaleRequest"%>
+<%@page import="wirecard.core.entity.CardTokenization"%>
 <%@page import="wirecard.core.Settings"%>
-
 <%@page contentType="text/html" pageEncoding="windows-1254"%>
 <jsp:include page="layout.jsp" />
 <fieldset>
@@ -93,6 +94,8 @@
 		   Setting ayarlarýmýzý alýyoruz. Formdan gelen bilgilerle MarketPlaceMpSaleRequest sýnýfýmýzý dolduruyoruz.
 		   MarketPlaceMpSaleRequest ve Setting ayarlarýmýzla sayfamýzý post ediyoruz.
 		*/
+                
+                UUID  uuid = UUID.randomUUID();
 		Settings settings = new Settings();
 		settings.userCode="";
                 settings.pin="";
@@ -102,7 +105,7 @@
                 
                 marketPlaceMpSaleRequest.ServiceType = "CCMarketPlace";
                 marketPlaceMpSaleRequest.OperationType = "MPSale";
-                marketPlaceMpSaleRequest.MPAY = "";
+                marketPlaceMpSaleRequest.MPAY = "01";
                 marketPlaceMpSaleRequest.IPAddress = "127.0.0.1";
                 marketPlaceMpSaleRequest.Port = "123";
                 marketPlaceMpSaleRequest.Description = "Bilgisayar";
@@ -110,8 +113,8 @@
                 marketPlaceMpSaleRequest.CommissionRate = 100; //komisyon oraný 1. 100 ile çarpýlýp gönderiliyor
                 marketPlaceMpSaleRequest.ExtraParam = "";
                 marketPlaceMpSaleRequest.PaymentContent = "BLGSYR01";
+                marketPlaceMpSaleRequest.Price = 1;//0,01 TL
                 marketPlaceMpSaleRequest.SubPartnerId = Integer.parseInt(request.getParameter("subPartnerId"));
-
                 
                 marketPlaceMpSaleRequest.Token = new Token();
                 marketPlaceMpSaleRequest.Token.UserCode = settings.userCode;
@@ -123,8 +126,14 @@
                 marketPlaceMpSaleRequest.CreditCardInfo.ExpireYear =Integer.parseInt(request.getParameter("expireYear"));
                 marketPlaceMpSaleRequest.CreditCardInfo.ExpireMonth =Integer.parseInt(request.getParameter("expireMonth"));
                 marketPlaceMpSaleRequest.CreditCardInfo.Cvv =request.getParameter("cvv");
-                marketPlaceMpSaleRequest.CreditCardInfo.Price = 1;//0,01 TL
+  
+                marketPlaceMpSaleRequest.CardTokenization = new CardTokenization();
+                marketPlaceMpSaleRequest.CardTokenization.RequestType=0;
+                marketPlaceMpSaleRequest.CardTokenization.CustomerId="01";
+                marketPlaceMpSaleRequest.CardTokenization.ValidityPeriod=0;
+                marketPlaceMpSaleRequest.CardTokenization.CCTokenId=uuid.toString();
                 
+               
                 
 		String marketPlaceMpSaleResponse = marketPlaceMpSaleRequest.execute(marketPlaceMpSaleRequest,settings); //"MarketPlace MarketPlaceMpSaleRequest servisi baþlatýlmasý için gerekli servis çaðýrýsýný temsil eder."
 		StringWriter sw = new StringWriter();

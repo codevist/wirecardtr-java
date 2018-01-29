@@ -4,7 +4,6 @@
 <%@page import="java.io.StringWriter"%>
 <%@page import="wirecard.core.request.WDTicketPaymentFormRequest"%>
 <%@page import="wirecard.core.Settings"%>
-
 <%@page import="javax.xml.parsers.DocumentBuilderFactory"%>
 <%@page import="javax.xml.parsers.ParserConfigurationException"%>
 
@@ -69,6 +68,7 @@
 		   Setting ayarlarýmýzý alýyoruz. Formdan gelen bilgilerle WDTicketPaymentFormRequest sýnýfýmýzý dolduruyoruz.
 		   WDTicketPaymentFormRequest ve Setting ayarlarýmýzla sayfamýzý post ediyoruz.
 		*/
+                
                 
 		Settings settings = new Settings();
 		settings.userCode="";
