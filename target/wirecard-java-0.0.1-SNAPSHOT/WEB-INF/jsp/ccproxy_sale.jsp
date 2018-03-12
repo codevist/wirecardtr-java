@@ -5,6 +5,8 @@
 <%@page import="java.io.StringWriter"%>
 <%@page import="wirecard.core.request.CCProxySaleRequest"%>
 <%@page import="wirecard.core.Settings"%>
+<%@page import="java.util.UUID"%>
+<%@page import="wirecard.core.entity.CardTokenization"%>
 <jsp:include page="layout.jsp" />
 <%@page contentType="text/html" pageEncoding="windows-1254"%>
 
@@ -86,11 +88,12 @@
 	request.setCharacterEncoding("UTF-8");
 
 	if ("POST".equalsIgnoreCase(request.getMethod())) {
-	
+            
 		/* 
 		   Setting ayarlarýmýzý alýyoruz. Formdan gelen bilgilerle CCProxySaleRequest sýnýfýmýzý dolduruyoruz.
 		   MarketPlaceSale3DSecRequest ve Setting ayarlarýmýzla sayfamýzý post ediyoruz.
 		*/
+                UUID  uuid = UUID.randomUUID();
 		Settings settings = new Settings();    
 		settings.userCode="";
                 settings.pin="";
@@ -106,7 +109,7 @@
                 ccProxySaleRequest.Description = "Bilgisayar";
                 ccProxySaleRequest.InstallmentCount =Integer.parseInt(request.getParameter("installmentCount"));
                 ccProxySaleRequest.ExtraParam = "";
-                
+                ccProxySaleRequest.Port = "123";
                 ccProxySaleRequest.Token = new Token();
                 ccProxySaleRequest.Token.UserCode = settings.userCode;
                 ccProxySaleRequest.Token.Pin = settings.pin;
@@ -118,7 +121,13 @@
                 ccProxySaleRequest.CreditCardInfo.ExpireMonth =Integer.parseInt(request.getParameter("expireMonth"));
                 ccProxySaleRequest.CreditCardInfo.Cvv =request.getParameter("cvv");
                 ccProxySaleRequest.CreditCardInfo.Price = 1;//0,01 TL
-  
+                
+                ccProxySaleRequest.CardTokenization = new CardTokenization();
+                ccProxySaleRequest.CardTokenization.RequestType=0;
+                ccProxySaleRequest.CardTokenization.CustomerId="01";
+                ccProxySaleRequest.CardTokenization.ValidityPeriod=0;
+                ccProxySaleRequest.CardTokenization.CCTokenId=uuid.toString();
+		
 		String ccProxySaleResponse = ccProxySaleRequest.execute(ccProxySaleRequest,settings); //"Ödeme Formu ödeme servisi baþlatýlmasý için gerekli servis çaðýrýsýný temsil eder."
 		StringWriter sw = new StringWriter();
                 JAXB.marshal(ccProxySaleResponse, sw);

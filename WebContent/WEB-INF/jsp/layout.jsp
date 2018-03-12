@@ -57,10 +57,11 @@
                        
                     </ul>
                 </li>
-                <li>
+                 <li>
                      <a href="#paymentForm" data-toggle="collapse" aria-expanded="false">Ödeme Formu</a>
                     <ul class="collapse list-unstyled" id="paymentForm">
-                      <li><a href="ccproxy_sale.htm">Ödeme Formu</a></li>
+                      <li><a href="ccroxy_sale3d.htm">3D Secure İle Ödeme Formu</a></li>
+                       <li><a href="ccproxy_sale.htm">3D Secure Olmadan Ödeme Formu</a></li>
                        
                     </ul>
                 </li>
@@ -83,7 +84,14 @@
                       <li><a href="marketplace_release_payment.htm">Ödeme Onay Servisi</a></li>
                     </ul>
                 </li>
-               
+                 <li>
+                     <a href="#transactionQueryForm" data-toggle="collapse" aria-expanded="false">İşlem Sorgulama</a>
+                    <ul class="collapse list-unstyled" id="transactionQueryForm">
+                      <li><a href="transactionquery_order.htm">Sipariş Numarası ile İşlem Sorgulama</a></li>
+                       <li><a href="transactionquery_mpay.htm">MPAY ile İşlem Sorgulama</a></li>
+                       
+                    </ul>
+                </li>
             </ul>  
         </nav>
      <div id="content">

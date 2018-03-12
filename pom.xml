@@ -105,6 +105,42 @@
 		    <id>wsimport-generate-saleservice.asmx</id>
 		    <phase>generate-sources</phase>
 		   </execution>
+		   <execution>
+		    <goals>
+		     <goal>wsimport</goal>
+		    </goals>
+		    <configuration>
+		     <wsdlFiles>
+		      <wsdlFile>www.wirecard.com.tr/services/saleservice.asmx.wsdl</wsdlFile>
+		     </wsdlFiles>
+		     <packageName></packageName>
+		     <vmArgs>
+		      <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+		     </vmArgs>
+		     <wsdlLocation>https://www.wirecard.com.tr/services/saleservice.asmx?WSDL</wsdlLocation>
+		     <staleFile>${project.build.directory}/jaxws/stale/saleservice.asmx_1.stale</staleFile>
+		    </configuration>
+		    <id>wsimport-generate-saleservice.asmx_1</id>
+		    <phase>generate-sources</phase>
+		   </execution>
+		   <execution>
+		    <goals>
+		     <goal>wsimport</goal>
+		    </goals>
+		    <configuration>
+		     <wsdlFiles>
+		      <wsdlFile>www.wirecard.com.tr/services/saleservice.asmx.wsdl</wsdlFile>
+		     </wsdlFiles>
+		     <packageName></packageName>
+		     <vmArgs>
+		      <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+		     </vmArgs>
+		     <wsdlLocation>https://www.wirecard.com.tr/services/saleservice.asmx?WSDL</wsdlLocation>
+		     <staleFile>${project.build.directory}/jaxws/stale/saleservice.asmx_2.stale</staleFile>
+		    </configuration>
+		    <id>wsimport-generate-saleservice.asmx_2</id>
+		    <phase>generate-sources</phase>
+		   </execution>
 		  </executions>
 		  <dependencies>
 		   <dependency>

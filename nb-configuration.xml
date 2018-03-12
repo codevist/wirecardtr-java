@@ -17,5 +17,7 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-maven-jaxws._5f_C_5f_RssToHTML_2e_asmx>http://www.webservicex.net/RssToHTML.asmx?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_RssToHTML_2e_asmx>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_SubscriberManagementService_2e_asmx>https://www.3pay.com/services/SubscriberManagementService.asmx?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_SubscriberManagementService_2e_asmx>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_saleservice_2e_asmx>https://www.3pay.com/services/saleservice.asmx?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_saleservice_2e_asmx>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_saleservice_2e_asmx_5f_1>https://www.wirecard.com.tr/services/saleservice.asmx?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_saleservice_2e_asmx_5f_1>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_saleservice_2e_asmx_5f_2>https://www.wirecard.com.tr/services/saleservice.asmx?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_saleservice_2e_asmx_5f_2>
     </properties>
 </project-shared-configuration>

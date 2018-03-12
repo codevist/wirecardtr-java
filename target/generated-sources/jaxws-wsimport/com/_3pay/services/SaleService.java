@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "SaleService", targetNamespace = "http://www.3pay.com/services/", wsdlLocation = "https://www.3pay.com/services/saleservice.asmx?WSDL")
+@WebServiceClient(name = "SaleService", targetNamespace = "http://www.3pay.com/services/", wsdlLocation = "https://www.wirecard.com.tr/services/saleservice.asmx?WSDL")
 public class SaleService
     extends Service
 {
@@ -30,7 +30,7 @@ public class SaleService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://www.3pay.com/services/saleservice.asmx?WSDL");
+            url = new URL("https://www.wirecard.com.tr/services/saleservice.asmx?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

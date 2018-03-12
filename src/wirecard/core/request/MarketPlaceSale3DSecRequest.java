@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import wirecard.core.RestHttpCaller;
 import wirecard.core.Settings;
+import wirecard.core.entity.CardTokenization;
 import wirecard.core.entity.CreditCardInfo;
 import wirecard.core.entity.Token;
 
@@ -28,6 +29,8 @@ public class MarketPlaceSale3DSecRequest {
         public Token Token ;
         @XmlElement(name ="CreditCardInfo")
         public CreditCardInfo CreditCardInfo ;
+        @XmlElement(name ="CardTokenization")
+        public CardTokenization CardTokenization ;
         @XmlElement(name ="MPAY")
         public String MPAY ;
         @XmlElement(name ="IPAddress")

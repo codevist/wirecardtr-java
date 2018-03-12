@@ -35,7 +35,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="">Kart Sahibi Adý Soyadý:</label>
             <div class="col-md-4">
-                <input value="Fatih Coþkun" name="ownerName" class="form-control input-md">
+                <input value="Ahmet Yýlmaz" name="ownerName" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">
@@ -101,8 +101,7 @@
                 settings.pin="";
 		settings.baseUrl = "https://www.wirecard.com.tr/SGate/Gate"; //"Wirecard web servisleri API url'lerinin bilgisidir. 
 		
-		MarketPlaceMpSaleRequest marketPlaceMpSaleRequest = new MarketPlaceMpSaleRequest();  
-                
+		MarketPlaceMpSaleRequest marketPlaceMpSaleRequest = new MarketPlaceMpSaleRequest();
                 marketPlaceMpSaleRequest.ServiceType = "CCMarketPlace";
                 marketPlaceMpSaleRequest.OperationType = "MPSale";
                 marketPlaceMpSaleRequest.MPAY = "01";

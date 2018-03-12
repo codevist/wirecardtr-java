@@ -5,7 +5,8 @@
 <%@page import="java.io.StringWriter"%>
 <%@page import="wirecard.core.request.MarketPlaceSale3DSecRequest"%>
 <%@page import="wirecard.core.Settings"%>
-
+<%@page import="wirecard.core.entity.CardTokenization"%>
+<%@page import="java.util.UUID"%>
 <%@page contentType="text/html" pageEncoding="windows-1254"%>
 <jsp:include page="layout.jsp" />
 <fieldset>
@@ -33,7 +34,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="">Kart Sahibi Adý Soyadý:</label>
             <div class="col-md-4">
-                <input value="Fatih Coþkun" name="ownerName" class="form-control input-md">
+                <input value="Ahmet Yýlmaz" name="ownerName" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">
@@ -93,16 +94,13 @@
 		   Setting ayarlarýmýzý alýyoruz. Formdan gelen bilgilerle MarketPlaceSale3DSecRequest sýnýfýmýzý dolduruyoruz.
 		   MarketPlaceSale3DSecRequest ve Setting ayarlarýmýzla sayfamýzý post ediyoruz.
 		*/
+                UUID  uuid = UUID.randomUUID();
 		Settings settings = new Settings();
-                
-                
                 
 		settings.userCode="";
                 settings.pin="";
 		settings.baseUrl = "https://www.wirecard.com.tr/SGate/Gate"; //"Wirecard web servisleri API url'lerinin bilgisidir. 
-	
-                
-                
+   
 		MarketPlaceSale3DSecRequest marketPlaceSale3DSecRequest = new MarketPlaceSale3DSecRequest();  
                 
                 marketPlaceSale3DSecRequest.ServiceType = "CCMarketPlace";
@@ -130,7 +128,14 @@
                 marketPlaceSale3DSecRequest.CreditCardInfo.ExpireMonth =Integer.parseInt(request.getParameter("expireMonth"));
                 marketPlaceSale3DSecRequest.CreditCardInfo.Cvv =request.getParameter("cvv");
                 marketPlaceSale3DSecRequest.CreditCardInfo.Price = 1;//0,01 TL
-  
+                
+                marketPlaceSale3DSecRequest.CardTokenization = new CardTokenization();
+                marketPlaceSale3DSecRequest.CardTokenization.RequestType=0;
+                marketPlaceSale3DSecRequest.CardTokenization.CustomerId="01";
+                marketPlaceSale3DSecRequest.CardTokenization.ValidityPeriod=0;
+                marketPlaceSale3DSecRequest.CardTokenization.CCTokenId=uuid.toString();
+                
+                
 		String marketPlaceSale3DSecResponse = marketPlaceSale3DSecRequest.execute(marketPlaceSale3DSecRequest,settings); //"Pazaryeri 3DSecure servisi baþlatýlmasý için gerekli servis çaðýrýsýný temsil eder."
 		StringWriter sw = new StringWriter();
                 JAXB.marshal(marketPlaceSale3DSecResponse, sw);

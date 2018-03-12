@@ -31,12 +31,15 @@
                                 <prop key="pro_api.htm">ProApiController</prop>	
                                  <prop key="api_plus.htm">ApiPlusController</prop>	
                                 <prop key="ccproxy_sale.htm">CCProxySaleController</prop>
+                                <prop key="ccroxy_sale3d.htm">CCProxySale3DSecureController</prop>
                                 <prop key="wdticket_sale3durl.htm">WDTicketSale3DSecureController</prop>	
                                 <prop key="wdticket_sale.htm">WDTicketSaleController</prop>	
                                 <prop key="wdticket_sale.htm">WDTicketSaleController</prop>
                                 <prop key="subscriber_detail.htm">SubscriberDetailController</prop>
                                 <prop key="subscriber_deactive.htm">SubscriberDeactiveController</prop>
                                 <prop key="subscriber_select.htm">SubscriberSelectController</prop>
+                                <prop key="transactionquery_order.htm">TransactionQueryOrderController</prop>
+                                <prop key="transactionquery_mpay.htm">TransactionQueryMPAYController</prop>
                                 <prop key="success.htm">SuccessController</prop>
                                 <prop key="fail.htm">FailController</prop>
                                 
@@ -91,6 +94,10 @@
 		name="CCProxySaleController"
 		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
 		p:viewName="ccproxy_sale" />
+         <bean
+		name="CCProxySale3DSecureController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="ccroxy_sale3d" />
         <bean
 		name="WDTicketSale3DSecureController"
 		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
@@ -116,7 +123,14 @@
 		name="ApiPlusController"
 		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
 		p:viewName="api_plus" /> 
-           
+            <bean
+		name="TransactionQueryOrderController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="transactionquery_order" /> 
+                <bean
+		name="TransactionQueryMPAYController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="transactionquery_mpay" /> 
             <bean
 		name="SuccessController"
 		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
@@ -125,4 +139,8 @@
 		name="FailController"
 		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
 		p:viewName="fail" /> 
+         
+         
+         
+         
 </beans>

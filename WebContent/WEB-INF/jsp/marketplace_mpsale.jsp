@@ -35,7 +35,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="">Kart Sahibi Adý Soyadý:</label>
             <div class="col-md-4">
-                <input value="Fatih Coþkun" name="ownerName" class="form-control input-md">
+                <input value="Ahmet Yýlmaz" name="ownerName" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">

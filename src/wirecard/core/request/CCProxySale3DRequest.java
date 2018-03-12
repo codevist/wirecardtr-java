@@ -13,7 +13,7 @@ import wirecard.core.entity.CreditCardInfo;
 import wirecard.core.entity.Token;
 
 @XmlRootElement(name = "WIRECARD")
-public class CCProxySaleRequest {
+public class CCProxySale3DRequest {
         @XmlElement(name ="ServiceType")
         public String ServiceType ;
         @XmlElement(name ="OperationType")
@@ -23,14 +23,17 @@ public class CCProxySaleRequest {
         @XmlElement(name ="CreditCardInfo")
         public CreditCardInfo CreditCardInfo;
         @XmlElement(name ="CardTokenization")
-        
         public CardTokenization CardTokenization ;
-        @XmlElement(name ="MPAY") 
+        @XmlElement(name ="MPAY")
         public String MPAY ;
         @XmlElement(name ="Port")
         public String Port ;
         @XmlElement(name ="IPAddress")
         public String IPAddress ;
+        @XmlElement(name ="ErrorURL")
+        public String ErrorURL ;
+        @XmlElement(name ="SuccessURL")
+        public String SuccessURL ;
         @XmlElement(name ="PaymentContent")
         public String PaymentContent ;
         @XmlElement(name ="InstallmentCount")
@@ -40,7 +43,7 @@ public class CCProxySaleRequest {
         @XmlElement(name ="ExtraParam")
         public String ExtraParam ;
         
-        public static String execute(CCProxySaleRequest request, Settings settings) throws Exception {         
+        public static String execute(CCProxySale3DRequest request, Settings settings) throws Exception {         
 		return RestHttpCaller.getInstance().postXML(settings.baseUrl,request);
 	}
 }

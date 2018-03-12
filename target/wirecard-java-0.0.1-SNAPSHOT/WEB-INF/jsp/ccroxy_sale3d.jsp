@@ -3,19 +3,19 @@
 <%@page import="wirecard.core.Helper"%>
 <%@page import="javax.xml.bind.JAXB"%>
 <%@page import="java.io.StringWriter"%>
-<%@page import="wirecard.core.request.CCProxySaleRequest"%>
-<%@page import="wirecard.core.Settings"%>
 <%@page import="java.util.UUID"%>
+<%@page import="wirecard.core.request.CCProxySale3DRequest"%>
 <%@page import="wirecard.core.entity.CardTokenization"%>
+<%@page import="wirecard.core.Settings"%>
 <jsp:include page="layout.jsp" />
 <%@page contentType="text/html" pageEncoding="windows-1254"%>
 
-<h2>CCProxySale</h2>
+<h2>CCProxySale 3D Secure</h2>
 <br/>
 <fieldset>
-    <legend><label style="font-weight:bold;width:250px;">Proxy Sale Bilgileri</label></legend>
+    <legend><label style="font-weight:bold;width:250px;">Proxy Sale 3D Secure Bilgileri</label></legend>
     <label style="font-weight:bold;">Servis Adý &nbsp; :   &nbsp; </label> CCProxy<br>
-    <label style="font-weight:bold;">Operasyon Adý &nbsp; :&nbsp; </label> Sale <br>
+    <label style="font-weight:bold;">Operasyon Adý &nbsp; :&nbsp; </label> Sale3DSEC <br>
     <label style="font-weight:bold;">UserCode  &nbsp;:  &nbsp;</label> Wirecard tarafýndan verilen deðer <br>
     <label style="font-weight:bold;">Pin &nbsp;:  &nbsp;</label> Wirecard tarafýndan verilen deðer <br>
     <label style="font-weight:bold;">Fiyat &nbsp;:  &nbsp;</label> 0,01 TL <br>
@@ -88,9 +88,9 @@
 	request.setCharacterEncoding("UTF-8");
 
 	if ("POST".equalsIgnoreCase(request.getMethod())) {
-            
+	
 		/* 
-		   Setting ayarlarýmýzý alýyoruz. Formdan gelen bilgilerle CCProxySaleRequest sýnýfýmýzý dolduruyoruz.
+		   Setting ayarlarýmýzý alýyoruz. Formdan gelen bilgilerle CCProxySale3DRequest sýnýfýmýzý dolduruyoruz.
 		   MarketPlaceSale3DSecRequest ve Setting ayarlarýmýzla sayfamýzý post ediyoruz.
 		*/
                 UUID  uuid = UUID.randomUUID();
@@ -100,37 +100,38 @@
 		settings.baseUrl = "https://www.wirecard.com.tr/SGate/Gate"; //"Wirecard web servisleri API url'lerinin bilgisidir. 
 
                 
-		CCProxySaleRequest ccProxySaleRequest = new CCProxySaleRequest();
-                ccProxySaleRequest.ServiceType = "CCProxy";
-                ccProxySaleRequest.OperationType = "Sale";
-                ccProxySaleRequest.MPAY = "";
-                ccProxySaleRequest.IPAddress = "127.0.0.8";
-                ccProxySaleRequest.PaymentContent = "BLGSYR01";
-                ccProxySaleRequest.Description = "Bilgisayar";
-                ccProxySaleRequest.InstallmentCount =Integer.parseInt(request.getParameter("installmentCount"));
-                ccProxySaleRequest.ExtraParam = "";
-                ccProxySaleRequest.Port = "123";
-                ccProxySaleRequest.Token = new Token();
-                ccProxySaleRequest.Token.UserCode = settings.userCode;
-                ccProxySaleRequest.Token.Pin = settings.pin;
+		CCProxySale3DRequest ccProxySale3dRequest = new CCProxySale3DRequest();
+                ccProxySale3dRequest.ServiceType = "CCProxy";
+                ccProxySale3dRequest.OperationType = "Sale3DSEC";
+                ccProxySale3dRequest.MPAY = "";
+                ccProxySale3dRequest.IPAddress = "127.0.0.8";
+                ccProxySale3dRequest.PaymentContent = "BLGSYR01";
+                ccProxySale3dRequest.Description = "Bilgisayar";
+                ccProxySale3dRequest.InstallmentCount =Integer.parseInt(request.getParameter("installmentCount"));
+                ccProxySale3dRequest.ExtraParam = "";
+                ccProxySale3dRequest.Port = "123";
+                ccProxySale3dRequest.ErrorURL = "http://localhost:8084/wirecard-java/error.htm";
+                ccProxySale3dRequest.SuccessURL = "http://localhost:8084/wirecard-java/success.htm";
+                ccProxySale3dRequest.Token = new Token();
+                ccProxySale3dRequest.Token.UserCode = settings.userCode;
+                ccProxySale3dRequest.Token.Pin = settings.pin;
                 
-                ccProxySaleRequest.CreditCardInfo = new CreditCardInfo();
-                ccProxySaleRequest.CreditCardInfo.CreditCardNo =request.getParameter("creditCardNo");
-                ccProxySaleRequest.CreditCardInfo.OwnerName =request.getParameter("ownerName");
-                ccProxySaleRequest.CreditCardInfo.ExpireYear =Integer.parseInt(request.getParameter("expireYear"));
-                ccProxySaleRequest.CreditCardInfo.ExpireMonth =Integer.parseInt(request.getParameter("expireMonth"));
-                ccProxySaleRequest.CreditCardInfo.Cvv =request.getParameter("cvv");
-                ccProxySaleRequest.CreditCardInfo.Price = 1;//0,01 TL
+                ccProxySale3dRequest.CreditCardInfo = new CreditCardInfo();
+                ccProxySale3dRequest.CreditCardInfo.CreditCardNo =request.getParameter("creditCardNo");
+                ccProxySale3dRequest.CreditCardInfo.OwnerName =request.getParameter("ownerName");
+                ccProxySale3dRequest.CreditCardInfo.ExpireYear =Integer.parseInt(request.getParameter("expireYear"));
+                ccProxySale3dRequest.CreditCardInfo.ExpireMonth =Integer.parseInt(request.getParameter("expireMonth"));
+                ccProxySale3dRequest.CreditCardInfo.Cvv =request.getParameter("cvv");
+                ccProxySale3dRequest.CreditCardInfo.Price = 1;//0,01 TL
                 
-                ccProxySaleRequest.CardTokenization = new CardTokenization();
-                ccProxySaleRequest.CardTokenization.RequestType=0;
-                ccProxySaleRequest.CardTokenization.CustomerId="01";
-                ccProxySaleRequest.CardTokenization.ValidityPeriod=0;
-                ccProxySaleRequest.CardTokenization.CCTokenId=uuid.toString();
-		
-		String ccProxySaleResponse = ccProxySaleRequest.execute(ccProxySaleRequest,settings); //"Ödeme Formu ödeme servisi baþlatýlmasý için gerekli servis çaðýrýsýný temsil eder."
+                ccProxySale3dRequest.CardTokenization = new CardTokenization();
+                ccProxySale3dRequest.CardTokenization.RequestType=0;
+                ccProxySale3dRequest.CardTokenization.CustomerId="01";
+                ccProxySale3dRequest.CardTokenization.ValidityPeriod=0;
+                ccProxySale3dRequest.CardTokenization.CCTokenId=uuid.toString();
+		String ccProxySale3dResponse = ccProxySale3dRequest.execute(ccProxySale3dRequest,settings); //"Ödeme Formu ödeme servisi baþlatýlmasý için gerekli servis çaðýrýsýný temsil eder."
 		StringWriter sw = new StringWriter();
-                JAXB.marshal(ccProxySaleResponse, sw);
+                JAXB.marshal(ccProxySale3dResponse, sw);
 		out.println("<pre>" + Helper.prettyPrintXml(sw.toString()) + "</pre>"); //"Ödeme Formu ödeme servis çaðrýsý sonucunda oluþan servis çýktý parametrelerinin ekranda gösterilmesini saðlar"
 	}
 %>
